@@ -1,0 +1,7 @@
+﻿  main.c
+C:\_Projects\SCC_Repo\ZombieSurvivorSln\ZombieSurvivorProject\Source\main.c(56,9): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\_Projects\SCC_Repo\ZombieSurvivorSln\ZombieSurvivorProject\Source\main.c(77,30): error C2440: 'function': cannot convert from 'survivor_attributes_t *' to 'survivor_attributes_t'
+C:\_Projects\SCC_Repo\ZombieSurvivorSln\ZombieSurvivorProject\Source\main.c(77,18): warning C4024: 'AddSurvivors': different types for formal and actual parameter 1
+C:\_Projects\SCC_Repo\ZombieSurvivorSln\ZombieSurvivorProject\Source\main.c(80,42): warning C4028: formal parameter 1 different from declaration
+C:\_Projects\SCC_Repo\ZombieSurvivorSln\ZombieSurvivorProject\Source\main.c(82,68): error C2440: '=': cannot convert from 'survivor_attributes_t *' to 'survivor_attributes_t'
+C:\_Projects\SCC_Repo\ZombieSurvivorSln\ZombieSurvivorProject\Source\main.c(117,9): warning C4013: 'GetNextPlayer' undefined; assuming extern returning int
