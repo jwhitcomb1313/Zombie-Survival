@@ -21,7 +21,11 @@ typedef struct
 
 typedef struct 
 {
-    uint8_t index; // Determines whose turn
+    /*
+    The index was the part of the circular buffer 
+    I was missing that was breaking everything
+    */
+    uint8_t index; // Determines whose turn it is. 
     uint8_t count; // Total players alive or dead
     survivor_attributes_t *survivorBuffer[MAX_SURVIVORS];
 }survivor_turn_manager_t; 
@@ -34,7 +38,7 @@ uint8_t name_patrick[] = "Patrick";
 
 //Prototypes
 void init(void);
-void CreateNewSurvivor(survivor_attributes_t *newSurvivor, uint8_t* name);
+void CreateNewSurvivor(survivor_attributes_t* newSurvivor, uint8_t* name);
 void AddSurvivorToGame(survivor_attributes_t *newSurvivor); 
 uint8_t IncrementSurvivorIndex(void); 
 void SurvivorAction(survivor_attributes_t* survivor);
@@ -45,6 +49,14 @@ void EndTurn(survivor_attributes_t* survivor);
 void PrintQueue(void);
  
 
+//Global Variables
+survivor_attributes_t player_Spongebob; 
+survivor_attributes_t player_Patrick; 
+
+
+
+
+
 int main()
 {
     init(); 
@@ -52,22 +64,24 @@ int main()
 
 void init(void)
 {
+    const char init_string[] = "***";
     for (int i = 0; i < 4; i++)
-    {
-        strcpy(survivorQueue.survivorBuffer[i]->name, "*");
+    {  
+        strcpy_s(survivorQueue.survivorBuffer[i]->name, sizeof(init_string), init_string);
         survivorQueue.survivorBuffer[i]->wounds = 0;
         survivorQueue.survivorBuffer[i]->isAlive = false;
         survivorQueue.survivorBuffer[i]->isTurn = false;
         survivorQueue.survivorBuffer[i]->isPlayerSlotAvailable = true; 
         survivorQueue.survivorBuffer[i]->actionCounter = 0; 
     }
+    // Nobodys turn yet
     survivorQueue.index = 0; 
+    // No survivors yet
     survivorQueue.count = 0; 
-    CreateSurvivor(name_spongebob); 
+    CreateNewSurvivor(&player_Spongebob, name_spongebob); 
 }
 void CreateNewSurvivor(survivor_attributes_t *newSurvivor, uint8_t *name)
 {
-    survivor_attributes_t newSurvivor;
     strcpy_s(newSurvivor->name, sizeof(newSurvivor->name), name);
     newSurvivor->wounds = 0;
     newSurvivor->isAlive = true;
